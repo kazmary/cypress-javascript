@@ -1,0 +1,4 @@
+node-modules/
+cypress/downloads/
+cypress/screenshots/
+.env

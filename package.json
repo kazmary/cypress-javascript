@@ -1,0 +1,23 @@
+{
+  "name": "xoi-cypress-assessment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open",
+    "lint": "eslint ./"
+  },
+  "keywords": [],
+  "author": "kazmary",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^10.0.0",
+    "cypress": "^15.1.0",
+    "eslint": "^9.34.0",
+    "eslint-plugin-cypress": "^5.1.1",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1"
+  }
+}
