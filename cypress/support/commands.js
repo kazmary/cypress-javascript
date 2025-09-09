@@ -1,8 +1,17 @@
 const BASE_HEADERS = {
-  'Content-Type': 'application/json',
-  Accept: 'application/json',
-  'x-api-key': Cypress.env('apiKey'),
+  Vary: 'Accept',
+  //   'x-api-key': Cypress.env('apiKey'),
 }
+
+Cypress.Commands.add('createAccount', (options) => {
+  cy.request({
+    method: 'POST',
+    url: `${Cypress.env('apiUrl')}/createAccount`,
+    form: true,
+    headers: BASE_HEADERS,
+    body: { ...options },
+  })
+})
 
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
