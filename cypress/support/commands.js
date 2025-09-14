@@ -10,6 +10,31 @@ Cypress.Commands.add('createAccount', (options) => {
     form: true,
     headers: BASE_HEADERS,
     body: { ...options },
+  }).then((response) => {
+    expect(response.status).to.eq(200)
+  })
+})
+
+// Cypress.Commands.add('deleteAccount', (options) => {
+//   cy.request({
+//     method: 'DELETE',
+//     url: `${Cypress.env('apiUrl')}/deleteAccount`,
+//     headers: BASE_HEADERS,
+//     body: { ...options },
+//   }).then((response) => {
+//     expect(response.status).to.eq(200)
+//     expect(response.body.responseCode).to.eq(200)
+//   })
+// })
+Cypress.Commands.add('deleteAccount', ({ email, password }) => {
+  cy.request({
+    method: 'DELETE',
+    url: `${Cypress.env('apiUrl')}/deleteAccount`,
+    form: true,
+    headers: BASE_HEADERS,
+    body: { email, password },
+  }).then((response) => {
+    expect(response.status).to.eq(200)
   })
 })
 
