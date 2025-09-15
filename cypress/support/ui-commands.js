@@ -2,7 +2,7 @@ Cypress.Commands.add('getByDataQa', (dataQaAttr) => {
   cy.get(`[data-qa="${dataQaAttr}"]`)
 })
 
-Cypress.Commands.add('login', (email, password) => {
+Cypress.Commands.add('uiLogin', (email, password) => {
   cy.visit('/')
 
   cy.contains('Login').click()

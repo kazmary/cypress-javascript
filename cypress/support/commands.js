@@ -1,3 +1,4 @@
+import { verifyResponse } from './helpers'
 const BASE_HEADERS = {
   Vary: 'Accept',
   //   'x-api-key': Cypress.env('apiKey'),
@@ -15,17 +16,6 @@ Cypress.Commands.add('createAccount', (options) => {
   })
 })
 
-// Cypress.Commands.add('deleteAccount', (options) => {
-//   cy.request({
-//     method: 'DELETE',
-//     url: `${Cypress.env('apiUrl')}/deleteAccount`,
-//     headers: BASE_HEADERS,
-//     body: { ...options },
-//   }).then((response) => {
-//     expect(response.status).to.eq(200)
-//     expect(response.body.responseCode).to.eq(200)
-//   })
-// })
 Cypress.Commands.add('deleteAccount', ({ email, password }) => {
   cy.request({
     method: 'DELETE',
@@ -35,6 +25,22 @@ Cypress.Commands.add('deleteAccount', ({ email, password }) => {
     body: { email, password },
   }).then((response) => {
     expect(response.status).to.eq(200)
+  })
+  // .catch((err) => {
+  //   cy.log('Delete account failed:', err.message)
+  //   // Optionally, throw error to fail the test
+  //   throw err
+  // })
+})
+
+Cypress.Commands.add('getProductsList', () => {
+  cy.request({
+    method: 'GET',
+    url: `${Cypress.env('apiUrl')}/productsList`,
+    form: true,
+    headers: BASE_HEADERS,
+  }).then((response) => {
+    verifyResponse(response, 200)
   })
 })
 
