@@ -1,4 +1,7 @@
-Cypress.Commands.add('login', (email, password) => {
+/**
+ *
+ */
+Cypress.Commands.add('uiLogin', (email, password) => {
   cy.visit('/')
 
   cy.contains('Login').click()

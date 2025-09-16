@@ -13,6 +13,18 @@ Cypress.Commands.add('createAccount', (options) => {
   })
 })
 
+Cypress.Commands.add('deleteAccount', ({ email, password }) => {
+  cy.request({
+    method: 'DELETE',
+    url: `${Cypress.env('apiUrl')}/deleteAccount`,
+    form: true,
+    headers: BASE_HEADERS,
+    body: { email, password },
+  }).then((response) => {
+    expect(response.status).to.eq(200)
+  })
+})
+
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
