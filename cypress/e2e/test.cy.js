@@ -18,7 +18,11 @@ describe('API Tests', () => {
 
   it('Log in', () => {
     cy.login(accountData.email, accountData.password).then(() => {
-      cy.url().should('include', '/userPage')
+      cy.get('.shop-menu.pull-right', { timeout: 50000 })
+        .should('exist')
+        .find('b')
+        .contains(accountData.name)
+      cy.contains('Logout').scrollIntoView().should('be.visible')
     })
   })
 })
