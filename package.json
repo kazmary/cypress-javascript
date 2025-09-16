@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cypress open",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "perf": "k6 run performance_tests/performance-test.js --out json=performance_tests/k6-results.json"
   },
   "keywords": [],
   "author": "kazmary",
