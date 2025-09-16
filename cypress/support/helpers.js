@@ -5,3 +5,7 @@ export const verifyResponse = (response, statusCode, message) => {
     expect(res).to.have.property('message', message)
   }
 }
+
+export const getRandomProduct = (products) => {
+  return products[Math.floor(Math.random() * products.length)]
+}

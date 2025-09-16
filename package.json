@@ -1,7 +1,7 @@
 {
-  "name": "xoi-cypress-assessment",
+  "name": "cypress-javascript-assessment",
   "version": "1.0.0",
-  "description": "",
+  "description": "JavaScript UI and API Cypress tests for Test Online Shop",
   "main": "index.js",
   "scripts": {
     "test": "npx cypress open",

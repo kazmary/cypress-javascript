@@ -26,11 +26,6 @@ Cypress.Commands.add('deleteAccount', ({ email, password }) => {
   }).then((response) => {
     expect(response.status).to.eq(200)
   })
-  // .catch((err) => {
-  //   cy.log('Delete account failed:', err.message)
-  //   // Optionally, throw error to fail the test
-  //   throw err
-  // })
 })
 
 Cypress.Commands.add('getProductsList', () => {
