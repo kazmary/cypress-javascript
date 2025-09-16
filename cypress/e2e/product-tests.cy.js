@@ -1,5 +1,7 @@
 import { accountData } from '../support/constants/user'
 import { verifyResponse, getRandomProduct } from '../support/helpers'
+import { visa } from '../support/constants/paymentMethods.json'
+
 let womensProducts
 let womensProductsFixture
 
@@ -51,31 +53,15 @@ describe('Products Tests', () => {
         const randomProduct1 = getRandomProduct(womensProductsFixture)
         const randomProduct2 = getRandomProduct(womensProductsFixture)
         // select a random product from fixture
-        cy.get('.features_items')
-          .find('.productinfo')
-          .contains(randomProduct1.name)
-          .as('chosenProduct')
-          .should('be.visible')
-          .siblings('h2')
-          .scrollIntoView()
-          .should('contain', randomProduct1.price)
-        cy.get('@chosenProduct').parent().find('.add-to-cart').click()
+        cy.findProduct(randomProduct1).parent().find('.add-to-cart').click()
         //verify the selected product is in the cart
-        cy.get('#cartModal')
-          .should('be.visible')
-          .and('contain', 'Your product has been added to cart.')
-          .within(() => {
-            cy.get('u').contains('View Cart').should('be.visible').click()
-          })
-        cy.get('#cart_info_table')
-          .as('cartTable')
-          .find('tbody tr')
-          .should('have.length', 1)
+        cy.navigateToCart()
+        cy.verifyCartTableSize(1)
           // delete selected product from cart
           .within(() => {
             cy.get('.cart_quantity_delete').should('be.visible').click()
           })
-        cy.get('@cartTable').find('tbody tr').should('have.length', 0)
+        cy.verifyCartTableSize(0)
         cy.get('#empty_cart')
           .should('be.visible')
           .and('contain', 'Cart is empty!')
@@ -85,6 +71,27 @@ describe('Products Tests', () => {
           })
         cy.url().should('contain', '/products')
         cy.get('.features_items').contains('All Products').should('be.visible')
+        // add another product to the cart
+        cy.findProduct(randomProduct2).parent().find('.add-to-cart').click()
+        cy.navigateToCart()
+        cy.verifyCartTableSize(1)
+        // checkout
+        cy.contains('Proceed To Checkout').should('be.visible').click()
+        cy.url().should('contain', '/checkout')
+        cy.contains('Review Your Order').should('be.visible')
+        cy.get('#cart_info')
+          .find('tr[id^="product-"]')
+          .should('have.length', 1)
+          .and('contain', randomProduct2.name)
+        cy.get('.check_out').click()
+        // make a payment
+        cy.url().should('contain', '/payment')
+        cy.fillInPayment(accountData, visa)
+        cy.getByDataQa('pay-button').click()
+        cy.url().should('contain', '/payment_done/')
+        cy.getByDataQa('order-placed')
+          .should('have.text', 'Order Placed!')
+          .and('be.visible')
       }
     )
   })
