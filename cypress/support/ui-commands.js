@@ -13,3 +13,7 @@ Cypress.Commands.add('uiLogin', (email, password) => {
     cy.get('[data-qa="login-button"]').click()
   })
 })
+
+Cypress.Commands.add('getByDataCy', (dataCyAttr) => {
+  return cy.get(`[data-cy=${dataCyAttr}]`)
+})

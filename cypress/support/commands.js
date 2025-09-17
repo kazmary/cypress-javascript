@@ -25,6 +25,8 @@ Cypress.Commands.add('deleteAccount', ({ email, password }) => {
   })
 })
 
+Cypress.Commands.add('getIncidentById', () => {})
+
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
