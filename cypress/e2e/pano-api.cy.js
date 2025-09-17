@@ -3,9 +3,9 @@ it('retrieve the incident', () => {
     method: 'GET',
     url: `${Cypress.env('panoApiUrl')}/incident/390007`,
     headers: {
-      Authorization: 'Bearer aW5jaWRlbnQ6ZDczY3JreHd3ZG1xNA==',
+      Authorization: Cypress.env('panoToken'),
       Accept: 'application/json, text/plain, */*',
-      'correlation-id': 'mfn7414x00063b6jaztz3z0',
+      'correlation-id': Cypress.env('panoCorrelationId'),
     },
   }).then((response) => {
     cy.log(JSON.stringify(response))

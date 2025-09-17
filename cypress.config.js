@@ -13,6 +13,8 @@ export default defineConfig({
     env: {
       apiUrl: 'https://automationexercise.com/api',
       panoApiUrl: 'https://api.360.stage.pano.ai',
+      panoToken: env.PANO_TOKEN,
+      panoCorrelationId: env.PANO_CORRELATION_ID,
       apiKey: env.REQRES_API_KEY || '',
     },
     setupNodeEvents(on, config) {
