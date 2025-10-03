@@ -27,13 +27,13 @@ pipeline {
     }
     stage('Archive results') {
       steps {
-        archiveArtifacts artifacts: 'cypress/results/**/*.*', allowEmptyArchive: true
+        archiveArtifacts artifacts: 'cypress/reports/mochawesome.html', allowEmptyArchive: true
       }
     }
   }
   post {
     always {
-      junit 'cypress/results/**/*.xml' // If using junit reporter
+      junit 'cypress/results/**/*.xml'
     }
   }
 }
