@@ -1,17 +1,24 @@
-import { faker } from '@faker-js/faker/locales/en_US'
+import { accountData } from '../fixtures/user'
 
 describe('API Tests', () => {
-  const user = {
-    username: Cypress.env('userName'),
-    email: Cypress.env('userEmail'),
-    password: Cypress.env('userPassword'),
-  }
+  //   const user = {
+  //     username: Cypress.env('userName'),
+  //     email: Cypress.env('userEmail'),
+  //     password: Cypress.env('userPassword'),
+  //   }
 
-  it('User Create - POST', () => {
-    cy.registerUser(user.email, user.password).then((response) => {
+  before(() => {
+    cy.createAccount(accountData).then((response) => {
+      //   cy.log(JSON.stringify(response))
+      const res = JSON.parse(response.body)
       expect(response.status).to.eq(200)
-      expect(response.body).to.have.property('id')
-      expect(response.body).to.have.property('token')
+      expect(res).to.have.property('responseCode', 201)
+    })
+  })
+
+  it('Log in', () => {
+    cy.login(accountData.email, accountData.password).then(() => {
+      cy.url().should('include', '/userPage')
     })
   })
 })

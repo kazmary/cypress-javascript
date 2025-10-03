@@ -1,5 +1,5 @@
 {
-  "name": "xoi-cypress-assessment",
+  "name": "cypress-javascript-ecommerce",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^10.0.0",
-    "cypress": "^15.1.0",
+    "cypress": "^15.3.0",
+    "cypress-mochawesome-reporter": "^4.0.2",
     "eslint": "^9.34.0",
     "eslint-plugin-cypress": "^5.1.1",
     "prettier": "^3.6.2"
