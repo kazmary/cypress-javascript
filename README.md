@@ -44,7 +44,7 @@ It is configured the way to trigger a pipeline only if PR is created against `ma
 
 To view the status and results:
 
-1. Go to the Jenkins web UI: [http://localhost:8080](http://localhost:8080) or ngrok-provided URL [https://mistrustfully-hemelytral-willow.ngrok-free.dev/] (https://mistrustfully-hemelytral-willow.ngrok-free.dev/) while ngrok is running.
+1. Go to the Jenkins web UI: [http://localhost:8080](http://localhost:8080) or ngrok-provided URL, for example [https://mistrustfully-hemelytral-willow.ngrok-free.dev/] (https://mistrustfully-hemelytral-willow.ngrok-free.dev/) while ngrok is running.
 2. Enter password for Jenkins obtained by running
 
 ```sh
