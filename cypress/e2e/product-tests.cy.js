@@ -57,10 +57,10 @@ describe('Products Tests', () => {
         //verify the selected product is in the cart
         cy.navigateToCart()
         cy.verifyCartTableSize(1)
-          // delete selected product from cart
-          .within(() => {
-            cy.get('.cart_quantity_delete').should('be.visible').click()
-          })
+        // delete selected product from cart
+        cy.get('@cartTable').within(() => {
+          cy.get('.cart_quantity_delete').should('be.visible').click()
+        })
         cy.verifyCartTableSize(0)
         cy.get('#empty_cart')
           .should('be.visible')

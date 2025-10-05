@@ -19,16 +19,15 @@ export default defineConfig({
     downloadsFolder: 'cypress/downloads',
     fixturesFolder: 'cypress/fixtures',
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    experimentalRunAllSpecs: true,
     env: {
       apiUrl: 'https://automationexercise.com/api',
       apiKey: env.REQRES_API_KEY || '',
-    },
-    experimentalRunAllSpecs: true,
-    setupNodeEvents(on, config) {
+      setupNodeEvents(on, config) {
         // implement node event listeners here
-      cypressMochawesomeReporter(on)
-      return config
+        cypressMochawesomeReporter(on)
+        return config
+      },
     },
-   },
   },
 })
