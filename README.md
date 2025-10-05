@@ -40,9 +40,18 @@ docker-compose up -d
 ```
 
 After a pull request is open, Jenkins will automatically run the pipeline and execute Cypress tests.
+It is configured the way to trigger a pipeline only if PR is created against `main` branch. PRs targeting other branches will not trigger the pipeline.
 
 To view the status and results:
 
-1. Go to the Jenkins web UI: [http://localhost:8080](http://localhost:8080)
-2. Find the pipeline/job for this project.
-3. Click on the latest build to see logs, test results, and any reports.
+1. Go to the Jenkins web UI: [http://localhost:8080](http://localhost:8080) or ngrok-provided URL [https://mistrustfully-hemelytral-willow.ngrok-free.dev/] (https://mistrustfully-hemelytral-willow.ngrok-free.dev/) while ngrok is running.
+2. Enter password for Jenkins obtained by running
+
+```sh
+docker exec <container_name_or_id> cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+(Use `docker ps` command to find your Jenkins container name - `cypress-javascript-jenkins-1`.)
+
+3. Find the pipeline/job for this project.
+4. Click on the latest build to see logs, test results, and any downloadable reports.
