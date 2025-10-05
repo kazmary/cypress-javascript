@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'cypress/included:15.1.0' // Use Cypress Docker image
+      image 'cypress/included:15.3.0' // Use Cypress Docker image
       args '-v $HOME/.cache:/root/.cache' // Optional: cache node_modules
     }
   }
