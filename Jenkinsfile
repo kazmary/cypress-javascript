@@ -1,13 +1,8 @@
 pipeline {
   agent {
     docker {
-      image 'cypress/included:15.3.0' // Use Cypress Docker image
-      args '-v $HOME/.cache:/root/.cache' // Optional: cache node_modules
+      image 'cypress/included:15.3.0' // Using Cypress Docker image
     }
-  }
-  environment {
-    // CYPRESS_API_KEY = credentials('cypress_api_key') // Use Jenkins credentials if needed
-    // Add other env vars as needed
   }
   stages {
     stage('Checkout') {
