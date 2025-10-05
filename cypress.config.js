@@ -13,6 +13,7 @@ export default defineConfig({
       apiUrl: 'https://automationexercise.com/api',
       apiKey: env.REQRES_API_KEY || '',
     },
+    experimentalRunAllSpecs: true,
     setupNodeEvents(on, config) {
       // implement node event listeners here
       return config
