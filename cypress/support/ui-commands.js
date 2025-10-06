@@ -1,5 +1,5 @@
 Cypress.Commands.add('getByDataQa', (dataQaAttr) => {
-  cy.get(`[data-qa="${dataQaAttr}"]`)
+  return cy.get(`[data-qa="${dataQaAttr}"]`)
 })
 
 Cypress.Commands.add('uiLogin', (email, password) => {
