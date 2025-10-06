@@ -6,8 +6,16 @@ services:
       - '8080:8080'
     volumes:
       - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock # enable Jenkins to run Docker commands
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
 
+  docker:
+    image: docker:dind
+    privileged: true
+    ports:
+      - "2375:2375"
+    environment:
+      - DOCKER_TLS_CERTDIR=
   ngrok:
     image: ngrok/ngrok:latest
     environment:
