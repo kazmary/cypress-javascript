@@ -1,7 +1,6 @@
-version: '3'
 services:
   jenkins:
-    image: jenkins/jenkins:lts
+    image: jenkins/jenkins:lts-docker
     ports:
       - '8080:8080'
     volumes:
