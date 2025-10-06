@@ -1,3 +1,4 @@
+import { verifyResponse } from './helpers'
 const BASE_HEADERS = {
   Vary: 'Accept',
   //   'x-api-key': Cypress.env('apiKey'),
@@ -10,6 +11,31 @@ Cypress.Commands.add('createAccount', (options) => {
     form: true,
     headers: BASE_HEADERS,
     body: { ...options },
+  }).then((response) => {
+    expect(response.status).to.eq(200)
+  })
+})
+
+Cypress.Commands.add('deleteAccount', ({ email, password }) => {
+  cy.request({
+    method: 'DELETE',
+    url: `${Cypress.env('apiUrl')}/deleteAccount`,
+    form: true,
+    headers: BASE_HEADERS,
+    body: { email, password },
+  }).then((response) => {
+    expect(response.status).to.eq(200)
+  })
+})
+
+Cypress.Commands.add('getProductsList', () => {
+  cy.request({
+    method: 'GET',
+    url: `${Cypress.env('apiUrl')}/productsList`,
+    form: true,
+    headers: BASE_HEADERS,
+  }).then((response) => {
+    verifyResponse(response, 200)
   })
 })
 
